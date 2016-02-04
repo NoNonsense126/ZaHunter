@@ -8,20 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		81D51BB01C62B73C008E3FE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D51BAF1C62B73C008E3FE7 /* AppDelegate.swift */; };
-		81D51BB21C62B73C008E3FE7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D51BB11C62B73C008E3FE7 /* ViewController.swift */; };
 		81D51BB51C62B73C008E3FE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D51BB31C62B73C008E3FE7 /* Main.storyboard */; };
 		81D51BB71C62B73C008E3FE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81D51BB61C62B73C008E3FE7 /* Assets.xcassets */; };
 		81D51BBA1C62B73C008E3FE7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D51BB81C62B73C008E3FE7 /* LaunchScreen.storyboard */; };
+		81D51BC21C62B761008E3FE7 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81D51BC11C62B761008E3FE7 /* CoreLocation.framework */; };
+		81D51BC41C62B77E008E3FE7 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D51BC31C62B77E008E3FE7 /* RootViewController.swift */; };
+		81D51BC61C62B876008E3FE7 /* PizzaPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D51BC51C62B876008E3FE7 /* PizzaPlace.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		81D51BAC1C62B73C008E3FE7 /* ZaHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZaHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D51BAF1C62B73C008E3FE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		81D51BB11C62B73C008E3FE7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		81D51BB41C62B73C008E3FE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		81D51BB61C62B73C008E3FE7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81D51BB91C62B73C008E3FE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		81D51BBB1C62B73C008E3FE7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81D51BC11C62B761008E3FE7 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		81D51BC31C62B77E008E3FE7 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		81D51BC51C62B876008E3FE7 /* PizzaPlace.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PizzaPlace.swift; path = Models/PizzaPlace.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +33,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81D51BC21C62B761008E3FE7 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -38,6 +43,7 @@
 		81D51BA31C62B73C008E3FE7 = {
 			isa = PBXGroup;
 			children = (
+				81D51BC11C62B761008E3FE7 /* CoreLocation.framework */,
 				81D51BAE1C62B73C008E3FE7 /* ZaHunter */,
 				81D51BAD1C62B73C008E3FE7 /* Products */,
 			);
@@ -54,14 +60,23 @@
 		81D51BAE1C62B73C008E3FE7 /* ZaHunter */ = {
 			isa = PBXGroup;
 			children = (
+				81D51BC31C62B77E008E3FE7 /* RootViewController.swift */,
 				81D51BAF1C62B73C008E3FE7 /* AppDelegate.swift */,
-				81D51BB11C62B73C008E3FE7 /* ViewController.swift */,
 				81D51BB31C62B73C008E3FE7 /* Main.storyboard */,
+				81D51BC71C62B883008E3FE7 /* Models */,
 				81D51BB61C62B73C008E3FE7 /* Assets.xcassets */,
 				81D51BB81C62B73C008E3FE7 /* LaunchScreen.storyboard */,
 				81D51BBB1C62B73C008E3FE7 /* Info.plist */,
 			);
 			path = ZaHunter;
+			sourceTree = "<group>";
+		};
+		81D51BC71C62B883008E3FE7 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				81D51BC51C62B876008E3FE7 /* PizzaPlace.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,7 +151,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81D51BB21C62B73C008E3FE7 /* ViewController.swift in Sources */,
+				81D51BC61C62B876008E3FE7 /* PizzaPlace.swift in Sources */,
+				81D51BC41C62B77E008E3FE7 /* RootViewController.swift in Sources */,
 				81D51BB01C62B73C008E3FE7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
