@@ -24,16 +24,29 @@ class PizzaPlace: NSObject {
         return location.distanceFromLocation(self.location)
     }
     
-    func travelTimeFromLocation(mapItem: MKMapItem, completionHandler: (timeInterval: NSTimeInterval) -> Void) {
+    func travelTimeFromLocation(mapItem: MKMapItem, vehicle: MKDirectionsTransportType,completionHandler: (timeInterval: NSTimeInterval) -> Void) {
         let request = MKDirectionsRequest()
         request.source = mapItem
-        request.transportType = MKDirectionsTransportType.Walking
+        request.transportType = vehicle
         request.destination = self.mapItem
         let directions = MKDirections(request: request)
         directions.calculateDirectionsWithCompletionHandler { (response, error) -> Void in
             let routes = response?.routes
             let route = routes?.first
             completionHandler(timeInterval: route!.expectedTravelTime)
+        }
+    }
+    
+    func getDirectionFrom(sourceItem: MKMapItem, completionHandler: (MKRoute) -> Void ){
+        let request = MKDirectionsRequest()
+        request.source = sourceItem
+        request.destination = mapItem
+        let directions = MKDirections(request: request)
+        directions.calculateDirectionsWithCompletionHandler { (response, error) -> Void in
+            let routes = response?.routes
+            if let route = routes?.first{
+                completionHandler(route)
+            }            
         }
     }
 }

@@ -18,6 +18,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var travelTime = 0
     var footerLabel = UILabel()
     
+    @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -70,22 +71,35 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
             })
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 self.tableView.reloadData()
-                self.calculateTime()
+                self.calculateTime(MKDirectionsTransportType.Walking)
             })
         }
     }
     
-    func calculateTime() {
+    func calculateTime(vehicle: MKDirectionsTransportType) {
         var currentLocation = MKMapItem.mapItemForCurrentLocation()
-        self.footerLabel.text = "0"
+        self.travelTime = 0
 
         for pizzaPlace: PizzaPlace in self.pizzaPlaces[0 ..< 4]{
-            pizzaPlace.travelTimeFromLocation(currentLocation, completionHandler: { (timeInterval) -> Void in
+            pizzaPlace.travelTimeFromLocation(currentLocation, vehicle: vehicle, completionHandler: { (timeInterval) -> Void in
                 self.travelTime += Int(timeInterval) + 3000
                 self.footerLabel.text = "\(self.travelTime/60) minutes to za them all"
                 
             })
             currentLocation = pizzaPlace.mapItem
+        }
+    }
+    
+    // MARK: - Segmented Control
+    
+    @IBAction func onSegmentChanged(sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            calculateTime(MKDirectionsTransportType.Walking)
+        case 1:
+            calculateTime(MKDirectionsTransportType.Automobile)
+        default:
+            calculateTime(MKDirectionsTransportType.Walking)
         }
     }
 
@@ -106,6 +120,16 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         self.pizzaPlaces.removeAtIndex(indexPath.row)
         self.tableView.reloadData()
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let pizzaPlace = self.pizzaPlaces[indexPath.row]
+        pizzaPlace.getDirectionFrom(MKMapItem.mapItemForCurrentLocation()) { (route) -> Void in
+            self.textView.text = "Destination: "
+            for step in route.steps {
+                self.textView.text = self.textView.text + "\n\(step.instructions)"
+            }
+        }
     }
     
     // MARK: - Location Manager Delegates

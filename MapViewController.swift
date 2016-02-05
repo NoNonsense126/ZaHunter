@@ -27,6 +27,7 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         for pizzaPlace in self.pizzaPlaces {
             let annotation = MKPointAnnotation()
             annotation.coordinate = pizzaPlace.location.coordinate
+            annotation.title = pizzaPlace.name
             self.mapView.addAnnotation(annotation)
         }
     }
@@ -42,7 +43,20 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         let pin = MKPinAnnotationView(annotation: annotation, reuseIdentifier: nil)
         pin.image = UIImage(named: "pizza.png")
+        pin.canShowCallout = true
+        pin.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
+        
         return pin
+    }
+    
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        
+        let annotation = view.annotation
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let destinationVC = storyboard.instantiateViewControllerWithIdentifier("routeVC") as! RouteViewController
+        destinationVC.destinationCoordinate = annotation!.coordinate
+        destinationVC.sourceCoordinate = self.userLocation.coordinate
+        navigationController?.pushViewController(destinationVC, animated: true)
     }
 
     
