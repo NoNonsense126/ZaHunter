@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		818F7D4D1C64205F00538A98 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818F7D4C1C64205F00538A98 /* MapViewController.swift */; };
+		818F7D4F1C64208300538A98 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 818F7D4E1C64208300538A98 /* MapKit.framework */; };
 		81D51BB01C62B73C008E3FE7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81D51BAF1C62B73C008E3FE7 /* AppDelegate.swift */; };
 		81D51BB51C62B73C008E3FE7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81D51BB31C62B73C008E3FE7 /* Main.storyboard */; };
 		81D51BB71C62B73C008E3FE7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81D51BB61C62B73C008E3FE7 /* Assets.xcassets */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		818F7D4C1C64205F00538A98 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapViewController.swift; path = ../MapViewController.swift; sourceTree = "<group>"; };
+		818F7D4E1C64208300538A98 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		81D51BAC1C62B73C008E3FE7 /* ZaHunter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZaHunter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81D51BAF1C62B73C008E3FE7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81D51BB41C62B73C008E3FE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -33,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				818F7D4F1C64208300538A98 /* MapKit.framework in Frameworks */,
 				81D51BC21C62B761008E3FE7 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -43,6 +48,7 @@
 		81D51BA31C62B73C008E3FE7 = {
 			isa = PBXGroup;
 			children = (
+				818F7D4E1C64208300538A98 /* MapKit.framework */,
 				81D51BC11C62B761008E3FE7 /* CoreLocation.framework */,
 				81D51BAE1C62B73C008E3FE7 /* ZaHunter */,
 				81D51BAD1C62B73C008E3FE7 /* Products */,
@@ -61,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				81D51BC31C62B77E008E3FE7 /* RootViewController.swift */,
+				818F7D4C1C64205F00538A98 /* MapViewController.swift */,
 				81D51BAF1C62B73C008E3FE7 /* AppDelegate.swift */,
 				81D51BB31C62B73C008E3FE7 /* Main.storyboard */,
 				81D51BC71C62B883008E3FE7 /* Models */,
@@ -154,6 +161,7 @@
 				81D51BC61C62B876008E3FE7 /* PizzaPlace.swift in Sources */,
 				81D51BC41C62B77E008E3FE7 /* RootViewController.swift in Sources */,
 				81D51BB01C62B73C008E3FE7 /* AppDelegate.swift in Sources */,
+				818F7D4D1C64205F00538A98 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,6 +309,7 @@
 				81D51BC01C62B73C008E3FE7 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

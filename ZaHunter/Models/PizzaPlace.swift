@@ -27,6 +27,7 @@ class PizzaPlace: NSObject {
     func travelTimeFromLocation(mapItem: MKMapItem, completionHandler: (timeInterval: NSTimeInterval) -> Void) {
         let request = MKDirectionsRequest()
         request.source = mapItem
+        request.transportType = MKDirectionsTransportType.Walking
         request.destination = self.mapItem
         let directions = MKDirections(request: request)
         directions.calculateDirectionsWithCompletionHandler { (response, error) -> Void in

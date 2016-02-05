@@ -37,6 +37,26 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     }
     
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.drawTableViewCells()
+    }
+    
+    override func viewWillTransitionToSize(size: CGSize, withTransitionCoordinator coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransitionToSize(size, withTransitionCoordinator: coordinator)
+        coordinator.animateAlongsideTransition(nil) { (context) -> Void in
+            self.drawTableViewCells()
+        }
+    }
+
+    func drawTableViewCells() {
+        self.tableView.rowHeight = self.tableView.frame.height / 5.0
+        self.footerLabel.superview?.frame = CGRectMake(0, 0, 320, self.tableView.frame.height / 5)
+        self.footerLabel.frame = CGRectMake(10, 10, 320, self.tableView.frame.height / 5)
+        self.tableView.reloadData()
+    }
+    
     func searchForPizzaPlaces(){
         let request = MKLocalSearchRequest()
         request.naturalLanguageQuery = "Pizza"
@@ -83,6 +103,11 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        self.pizzaPlaces.removeAtIndex(indexPath.row)
+        self.tableView.reloadData()
+    }
+    
     // MARK: - Location Manager Delegates
     func locationManager(manager: CLLocationManager, didFailWithError error: NSError) {
         print(error)
@@ -95,5 +120,12 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
             self.userLocation = location!
             self.searchForPizzaPlaces()
         }
+    }
+    
+    // MARK: - Segue
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let destination = segue.destinationViewController as! MapViewController
+        destination.pizzaPlaces = (self.pizzaPlaces.count > 4 ? Array(self.pizzaPlaces[0...3]) : self.pizzaPlaces)
+        destination.userLocation = self.userLocation
     }
 }
